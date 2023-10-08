@@ -1,0 +1,69 @@
+[Sun, 08 Oct 2023 18:51:08 GMT] Connecting to ceramic network 'inmemory' using pubsub topic '/ceramic/inmemory-967902201'
+[Sun, 08 Oct 2023 18:51:07 GMT] Starting Ceramic Daemon with @ceramicnetwork/cli package version 2.38.0, with js-ceramic repo git hash 07a994f2cd13801a2cd1da2e234d1721c0f02dab, and with config: 
+{
+  "anchor": {},
+  "http-api": {
+    "hostname": "127.0.0.1",
+    "port": 7007,
+    "admin-dids": [
+      "did:key:z6MktdVux9eu92g1eMAdcv2B5L1WCrsJjtppnbNCBH8X8gpy"
+    ]
+  },
+  "ipfs": {
+    "mode": "bundled",
+    "disable-peer-data-sync": false
+  },
+  "logger": {
+    "log-directory": "/Users/julissadantes-castillo/Documents/ceramic-playground/ceramic-app/ceramic-app-app/log/ceramic",
+    "log-level": 2,
+    "log-to-files": true
+  },
+  "metrics": {
+    "metrics-exporter-enabled": false
+  },
+  "network": {
+    "name": "inmemory"
+  },
+  "node": {
+    "gateway": false
+  },
+  "state-store": {
+    "mode": "file",
+    "local-directory": "/etc/ceramic/data"
+  },
+  "indexing": {
+    "db": "sqlite:///Users/julissadantes-castillo/Documents/ceramic-playground/ceramic-app/ceramic-indexing/ceramic.db",
+    "allow-queries-before-historical-sync": true,
+    "disable-composedb": false,
+    "enable-historical-sync": false
+  }
+}
+[Sun, 08 Oct 2023 18:51:07 GMT] Initializing SQLite connection
+[Sun, 08 Oct 2023 18:51:07 GMT] Connecting to IPFS node available as /ip4/127.0.0.1/tcp/4011/p2p/12D3KooWCTfqV2FYMS4y6vhseP1ebeqmX2HNiGUPbVKbJ3YuwTkt, /ip4/192.168.0.110/tcp/4011/p2p/12D3KooWCTfqV2FYMS4y6vhseP1ebeqmX2HNiGUPbVKbJ3YuwTkt
+[Sun, 08 Oct 2023 18:51:08 GMT] Creating ComposeDB config table: ceramic_models
+[Sun, 08 Oct 2023 18:51:08 GMT] Creating ComposeDB config table: ceramic_config
+[Sun, 08 Oct 2023 18:51:08 GMT] Connected to anchor service '<inmemory>' with supported anchor chains ['inmemory:12345']
+[Sun, 08 Oct 2023 18:51:08 GMT] Resuming polling for streams with pending anchors
+[Sun, 08 Oct 2023 18:51:08 GMT] Ceramic API running on 127.0.0.1:7007'
+[Sun, 08 Oct 2023 18:51:08 GMT] Finished resuming polling for 0 streams which had pending anchors
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c9vstjzqk1gq8zs3dsezcnx55j7b3n852rwhw264wbno3w6onsj
+[Sun, 08 Oct 2023 18:51:08 GMT] Creating ComposeDB Indexing table for model: kjzl6hvfrbw6c9vstjzqk1gq8zs3dsezcnx55j7b3n852rwhw264wbno3w6onsj
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c6di346hnvr02cd7bdbkudqqfe5tvdes7alsqiyjiiga0sf1b3h
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c9vstjzqk1gq8zs3dsezcnx55j7b3n852rwhw264wbno3w6onsj
+[Sun, 08 Oct 2023 18:51:08 GMT] Creating ComposeDB Indexing table for model: kjzl6hvfrbw6c6di346hnvr02cd7bdbkudqqfe5tvdes7alsqiyjiiga0sf1b3h
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c9vstjzqk1gq8zs3dsezcnx55j7b3n852rwhw264wbno3w6onsj
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c8bbaofc8k1m0nlnxwdtef1uy1hkux984cffo6gxlgr9mrsxp89
+[Sun, 08 Oct 2023 18:51:08 GMT] Creating ComposeDB Indexing table for model: kjzl6hvfrbw6c8bbaofc8k1m0nlnxwdtef1uy1hkux984cffo6gxlgr9mrsxp89
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c6di346hnvr02cd7bdbkudqqfe5tvdes7alsqiyjiiga0sf1b3h
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c9vstjzqk1gq8zs3dsezcnx55j7b3n852rwhw264wbno3w6onsj
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c6di346hnvr02cd7bdbkudqqfe5tvdes7alsqiyjiiga0sf1b3h
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c9vstjzqk1gq8zs3dsezcnx55j7b3n852rwhw264wbno3w6onsj
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c5iryabp70zy2n38ttzp6zmoljcznkn1y5s6e7m982se9xmf0m9
+[Sun, 08 Oct 2023 18:51:08 GMT] Creating ComposeDB Indexing table for model: kjzl6hvfrbw6c5iryabp70zy2n38ttzp6zmoljcznkn1y5s6e7m982se9xmf0m9
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c6di346hnvr02cd7bdbkudqqfe5tvdes7alsqiyjiiga0sf1b3h
+[Sun, 08 Oct 2023 18:51:08 GMT] Starting indexing for Model kjzl6hvfrbw6c5iryabp70zy2n38ttzp6zmoljcznkn1y5s6e7m982se9xmf0m9
+[Sun, 08 Oct 2023 18:51:09 GMT] Starting indexing for Model kjzl6hvfrbw6c9vstjzqk1gq8zs3dsezcnx55j7b3n852rwhw264wbno3w6onsj
+[Sun, 08 Oct 2023 18:51:09 GMT] Starting indexing for Model kjzl6hvfrbw6c6di346hnvr02cd7bdbkudqqfe5tvdes7alsqiyjiiga0sf1b3h
+[Sun, 08 Oct 2023 18:51:09 GMT] Starting indexing for Model kjzl6hvfrbw6c8bbaofc8k1m0nlnxwdtef1uy1hkux984cffo6gxlgr9mrsxp89
+[Sun, 08 Oct 2023 18:51:09 GMT] Starting indexing for Model kjzl6hvfrbw6c5iryabp70zy2n38ttzp6zmoljcznkn1y5s6e7m982se9xmf0m9
+[Sun, 08 Oct 2023 18:52:07 GMT] Did not receive any pubsub messages in more than 60000ms. IPFS did not provide any internal messages, please check your IPFS configuration.

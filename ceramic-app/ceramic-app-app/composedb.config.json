@@ -1,0 +1,36 @@
+{
+  "anchor": {},
+  "http-api": {
+    "hostname": "127.0.0.1",
+    "port": 7007,
+    "admin-dids": [
+      "did:key:z6MktdVux9eu92g1eMAdcv2B5L1WCrsJjtppnbNCBH8X8gpy"
+    ]
+  },
+  "ipfs": {
+    "mode": "bundled"
+  },
+  "logger": {
+    "log-directory": "./log/ceramic",
+    "log-level": 2,
+    "log-to-files": true
+  },
+  "metrics": {
+    "metrics-exporter-enabled": false
+  },
+  "network": {
+    "name": "inmemory"
+  },
+  "node": {
+    "gateway": false
+  },
+  "state-store": {
+    "mode": "file",
+    "local-directory": "/etc/ceramic/data"
+  },
+  "indexing": {
+    "db": "sqlite:///Users/julissadantes-castillo/Documents/ceramic-playground/ceramic-app/ceramic-indexing/ceramic.db",
+    "allow-queries-before-historical-sync": true,
+    "enable-historical-sync": false
+  }
+}
