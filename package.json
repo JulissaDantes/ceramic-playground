@@ -1,0 +1,22 @@
+{
+  "name": "ceramic-playground",
+  "version": "1.0.0",
+  "description": "a test environment for ceramic products",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulissaDantes/ceramic-playground.git"
+  },
+  "keywords": [
+    "ceramic"
+  ],
+  "author": "Julissa Dantes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulissaDantes/ceramic-playground/issues"
+  },
+  "homepage": "https://github.com/JulissaDantes/ceramic-playground#readme"
+}
