@@ -22,6 +22,7 @@
   "dependencies": {
     "@ceramicnetwork/cli": "^2.43.0",
     "@ceramicnetwork/http-client": "^2.35.0",
-    "@ceramicnetwork/stream-tile": "^2.34.0"
+    "@ceramicnetwork/stream-tile": "^2.34.0",
+    "@composedb/devtools-node": "^0.5.2"
   }
 }
