@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/JulissaDantes/ceramic-playground/issues"
   },
-  "homepage": "https://github.com/JulissaDantes/ceramic-playground#readme"
+  "homepage": "https://github.com/JulissaDantes/ceramic-playground#readme",
+  "dependencies": {
+    "@ceramicnetwork/cli": "^2.43.0",
+    "@ceramicnetwork/http-client": "^2.35.0",
+    "@ceramicnetwork/stream-tile": "^2.34.0"
+  }
 }

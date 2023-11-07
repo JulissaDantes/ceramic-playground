@@ -5,7 +5,7 @@
   },
   "http_api": {
     "hostname": "127.0.0.1",
-    "port": 7007,
+    "port": 3000,
     "cors_allowed_origins": [],
     "admin_dids": [
       "did:key:z6MktdVux9eu92g1eMAdcv2B5L1WCrsJjtppnbNCBH8X8gpy"

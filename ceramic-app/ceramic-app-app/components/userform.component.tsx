@@ -44,6 +44,7 @@ export const Userform = () => {
   const updateProfile = async () => {
     setLoading(true);
     if (ceramic.did !== undefined) {
+      console.log("did is undefined for this");
       const update = await composeClient.executeQuery(`
         mutation {
           createBasicProfile(input: {
