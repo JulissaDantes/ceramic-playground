@@ -6,10 +6,10 @@ import { getResolver } from 'key-did-resolver';
 // Import the devtool node package
 import { createComposite, writeEncodedComposite } from '@composedb/devtools-node';
 
-const seed = new Uint8Array([
+const seed = new Uint8Array([//Random numbers
     192,  16, 89, 183,  66, 111,  35,  98,
     211, 155, 35, 149, 177, 242, 119,  55,
-    202,  79, 94, 168, 106,  74,  17,   0,
+    202,  79, 94, 168, 106,  74,  17,   10,
     116, 105, 77, 116, 161, 176,  81, 189
   ]);
 const provider = new Ed25519Provider(seed);
