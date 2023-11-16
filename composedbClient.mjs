@@ -24,50 +24,55 @@ compose.setDID(did)
 
 console.log(compose,"ITS ALIVEEEE");
 // CREATING RECORDS
-await compose.executeQuery(`
-mutation {
-    createGenericModel(input: {
-        content: {
-            numericalField: 42,
-            textField: "Sample Text",
-            booleanField: true
-        }
-    }) 
-    {
-        document {
-            numericalField
-            textField
-            booleanField
-          }
-    }
-  }
-`)
+const create = false; // Update if you want to create something new
 
-await compose.executeQuery(`
-mutation {
-    createGenericModel(input: {
-        content: {
-            numericalField: 2,
-            textField: "Sample Text 2",
-            booleanField: false
+if (create) {
+    await compose.executeQuery(`
+    mutation {
+        createGenericModel(input: {
+            content: {
+                numericalField: 46,
+                textField: "Sample Text",
+                booleanField: true
+            }
+        }) 
+        {
+            document {
+                numericalField
+                textField
+                booleanField
+              }
         }
-    }) 
-    {
-        document {
-            numericalField
-            textField
-            booleanField
-          }
-    }
-  }
-`)
+      }
+    `)
+    
+    await compose.executeQuery(`
+    mutation {
+        createGenericModel(input: {
+            content: {
+                numericalField: 26,
+                textField: "Sample Text 2",
+                booleanField: false
+            }
+        }) 
+        {
+            document {
+                numericalField
+                textField
+                booleanField
+              }
+        }
+      }
+    `)        
+}
 
 // FILTERING RECORDS
 const resultFiltered = await compose.executeQuery(`
   query numericalFieldFiltered {
-    genericModelIndex(first: 1, filters: { where: {numericalField: {equalTo: 42} } }) {
+    genericModelIndex(first: 1, filters: { where: {numericalField: {equalTo: 2} } }) {
           edges {
         node {
+            id
             numericalField
             textField
             booleanField
@@ -95,21 +100,43 @@ const { data } = result;
 console.log("Just looking", data.genericModelIndex.edges);
 
 // UPDATING RECORDS
-/*
-const update = await compose.executeQuery(`
-mutation UpdateGenericModel {
-    updateGenericModel(id: kjzl6hvfrbw6cafi0e0i3c21axdp4qtpzc96buz5o2qd7c41v86pi3b1hmds0hv, input: {
-        content: {
-          numericalField: 42,
-          textField: "Sample Text",
-          booleanField: true
-        }) {
-      document {
-        numericalField
-        textField
-        booleanField : false
+const doUpdate = false
+
+if (doUpdate) {
+    const update = await compose.executeQuery(`
+    mutation UpdateGenericModel {
+        updateGenericModel(
+          input: { 
+            id: "kjzl6kcym7w8y7mjgp7tl2x69f1nonwhgymzju8aq8powcz5uvgh2xvt9n7unzn",
+            content: {
+              numericalField: 42,
+              textField: "Sample Text truly uluy",
+              booleanField: true  # Make sure this line doesn't have an extra closing parenthesis
+            }
+          }
+        ) {
+          document {
+            numericalField
+            textField
+            booleanField
+          }
+        }
       }
-    }
-  }
-`)
-console.log(update);*/
+      
+    `)
+    console.log("What was returned:", update.data);
+
+    const resultFiltered2 = await compose.executeQuery(`
+    query {
+        node (id: "kjzl6kcym7w8y7mjgp7tl2x69f1nonwhgymzju8aq8powcz5uvgh2xvt9n7unzn") {
+          ... on GenericModel {
+            id
+            numericalField
+            textField
+            booleanField
+          }
+        }
+      }
+    `)
+    console.log("just filtering updated record", resultFiltered2);
+}
