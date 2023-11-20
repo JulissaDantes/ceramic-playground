@@ -17,12 +17,11 @@ const compose = new ComposeClient({ ceramic: 'http://localhost:7007', definition
 const seed = new Uint8Array([157, 243, 44, 109, 192, 15, 72, 51, 96, 235, 41, 250, 4, 164, 114, 23, 44, 109, 192, 15, 72, 51, 96, 235, 41, 250, 4, 164, 15, 72, 51, 96]);//Random bytes
 const provider = new Ed25519Provider(seed)
 const did = new DID({ provider, resolver: getResolver() })
-  // Authenticate the DID with the provider
+// Authenticate the DID with the provider
 await did.authenticate()
 // Allow did to perform mutations
 compose.setDID(did)
 
-console.log(compose,"ITS ALIVEEEE");
 // CREATING RECORDS
 const create = false; // Update if you want to create something new
 
@@ -67,37 +66,42 @@ if (create) {
 }
 
 // FILTERING RECORDS
-const resultFiltered = await compose.executeQuery(`
-  query numericalFieldFiltered {
-    genericModelIndex(first: 1, filters: { where: {numericalField: {equalTo: 2} } }) {
-          edges {
-        node {
-            id
-            numericalField
-            textField
-            booleanField
-        }
-      }
-    }
-  }
-`)
-console.log("just filtering", resultFiltered.data.genericModelIndex.edges);
 
-const result = await compose.executeQuery(`
-query {
-    genericModelIndex(first:1) {
-          edges {
-        node {
-            numericalField
-            textField
-            booleanField
+const filter = false;
+if (filter) {
+    const resultFiltered = await compose.executeQuery(`
+      query numericalFieldFiltered {
+        genericModelIndex(first: 1, filters: { where: {numericalField: {equalTo: 2} } }) {
+              edges {
+            node {
+                id
+                numericalField
+                textField
+                booleanField
+            }
+          }
         }
       }
-    }
-  }
-`)
-const { data } = result;
-console.log("Just looking", data.genericModelIndex.edges);
+    `)
+    console.log("just filtering", resultFiltered.data.genericModelIndex.edges);
+
+    const result = await compose.executeQuery(`
+    query {
+        genericModelIndex(first:1) {
+              edges {
+            node {
+                numericalField
+                textField
+                booleanField
+            }
+          }
+        }
+      }
+    `)
+    const { data } = result;
+    console.log("Just looking", data.genericModelIndex.edges);
+
+}
 
 // UPDATING RECORDS
 const doUpdate = false
@@ -128,7 +132,7 @@ if (doUpdate) {
 
     const resultFiltered2 = await compose.executeQuery(`
     query {
-        node (id: "kjzl6kcym7w8y7mjgp7tl2x69f1nonwhgymzju8aq8powcz5uvgh2xvt9n7unzn") {
+        node (id: "kjzl6kcym7w8y7pobe7vnuidr4eauw6fdnhd98j9t9wumdhrqzi0748bo7hp4j5") {
           ... on GenericModel {
             id
             numericalField
@@ -140,3 +144,17 @@ if (doUpdate) {
     `)
     console.log("just filtering updated record", resultFiltered2);
 }
+
+const resultFiltered2 = await compose.executeQuery(`
+query {
+    node (id: "kjzl6kcym7w8y7pobe7vnuidr4eauw6fdnhd98j9t9wumdhrqzi0748bo7hp4j5") {
+      ... on GenericModel {
+        id
+        numericalField
+        textField
+        booleanField
+      }
+    }
+  }
+`)
+console.log("just filtering updated record", resultFiltered2);
