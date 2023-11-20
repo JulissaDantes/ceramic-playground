@@ -9,4 +9,4 @@ I want to use and test the Ceramic network and composable db, this is repo will 
 - [X] Filter data using composeDB.
 
 - [ ] Create way of detecting if model exists before compiling/deploying it.
-- [ ] Create script to call the function from the previous checkbox and if it doesnt exist compile, deploy, and create the runtime version of the model
+- [ ] Create script to call the function from the previous checkbox and if it doesn't exist compile, deploy, and create the runtime version of the model
