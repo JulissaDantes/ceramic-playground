@@ -7,6 +7,8 @@ const ceramic = new CeramicClient('http://localhost:7007')
 // Replace by the path to the local encoded composite file
 await writeEncodedCompositeRuntime(
   ceramic,
-  'my-composite.json',
-  '__generated__/definition.js'
+  './set-Examples/my-set-composite.json',
+  '__generated__/set-definition.js'
 )
+
+console.log("Success")
