@@ -40,51 +40,52 @@ compose.setDID(did)
 compose2.setDID(did2)
 
 //Create Basic Profile twice
+console.log("is 1 authenticated", await compose.context.isAuthenticated())
 const profile1 = await compose.executeQuery(`
-mutation {
-    createBasicProfile(input: {
-      content: {
-        name: "profile1.name"
-        username: "profile1.username"
-        description: "profile1.description"
-        gender: "FEM"
-        emoji: "ok"
-      }
-    }) 
-    {
-      document {
-        name
-        username
-        description
-        gender
-        emoji
-      }
+    mutation {
+        createBasicProfile(input: {
+        content: {
+            name: "profile1.name"
+            username: "profile1.username"
+            description: "profile1.description"
+            gender: "FEM"
+            emoji: "ok"
+        }
+        }) 
+        {
+        document {
+            name
+            username
+            description
+            gender
+            emoji
+        }
+        }
     }
-  }
-    `)
-    
+`)
+console.log("is 2 authenticated", await compose2.context.isAuthenticated())
 const profile2 = await compose2.executeQuery(`
-mutation {
-    createBasicProfile(input: {
-      content: {
-        name: "profile2.name"
-        username: "profile2.username"
-        description: "profile2.description"
-        gender: "MAS"
-        emoji: "ok"
-      }
-    }) 
-    {
-      document {
-        name
-        username
-        description
-        gender
-        emoji
-      }
+    mutation {
+        createBasicProfile(input: {
+        content: {
+            name: "profile2.name"
+            username: "profile2.username"
+            description: "profile2.description"
+            gender: "MAS"
+            emoji: "ok"
+        }
+        }) 
+        {
+        document {
+            name
+            username
+            description
+            gender
+            emoji
+        }
+        }
     }
-  }
-    `)
+`)
 
 console.log("profile 1:", profile1)
 console.log("profile 2:", profile2)

@@ -9,10 +9,11 @@ type BasicProfile @createModel(accountRelation: SINGLE, description: "A basic Pr
 
 type Following @createModel(accountRelation: LIST, description: "Who do you follow?") {
     profileId: StreamID! @documentReference(model: "BasicProfile")
-    profile: BasicProfile! @relationDocument(property: "profileId")
+    profile: BasicProfileX! @relationDocument(property: "profileId")
 }
 
-type Follow @createModel(accountRelation: SET, accountRelationFields: ["following"], description: "Who do you follow?") {
+#type Follow @createModel(accountRelation: SET, accountRelationFields: ["following"], description: "Who do you follow?") {
+type Follow @createModel(accountRelation: SET, description: "Who do you follow?") {
   follower: DID! @documentAccount # The controller of the document is the follower
   following: DID! 
 }

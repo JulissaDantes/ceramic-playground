@@ -7,7 +7,7 @@ import { getResolver } from 'key-did-resolver'
 
 // Import your compiled composite
 
-import { definition } from   './__generated__/definition.js'
+import { definition } from   '../__generated__/definition-single.js'
 
 // Create an instance of ComposeClient
 // Pass the URL of your Ceramic server
@@ -17,52 +17,40 @@ const compose = new ComposeClient({ ceramic: 'http://localhost:7007', definition
 const seed = new Uint8Array([157, 243, 44, 109, 192, 15, 72, 51, 96, 235, 41, 250, 4, 164, 114, 23, 44, 109, 192, 15, 72, 51, 96, 235, 41, 250, 4, 164, 15, 72, 51, 96]);//Random bytes
 const provider = new Ed25519Provider(seed)
 const did = new DID({ provider, resolver: getResolver() })
+
 // Authenticate the DID with the provider
 await did.authenticate()
 // Allow did to perform mutations
 compose.setDID(did)
-
+console.log("Using did:", did.id)
 // CREATING RECORDS
-const create = false; // Update if you want to create something new
+const create = true; // Update if you want to create something new
 
 if (create) {
-    await compose.executeQuery(`
-    mutation {
-        createGenericModel(input: {
+    const update = await compose.executeQuery(`
+        mutation {
+          createBasicProfile(input: {
             content: {
-                numericalField: 46,
-                textField: "Sample Text",
-                booleanField: true
+              name: "nameIIwe"
+              username: "profile?.rnamoe}"
+              description: "{profile?.description}"
+              gender: "ri}"
+              emoji: "i}"
             }
-        }) 
-        {
+          }) 
+          {
             document {
-                numericalField
-                textField
-                booleanField
-              }
+              name
+              username
+              description
+              gender
+              emoji
+            }
+          }
         }
-      }
-    `)
+      `)
     
-    await compose.executeQuery(`
-    mutation {
-        createGenericModel(input: {
-            content: {
-                numericalField: 26,
-                textField: "Sample Text 2",
-                booleanField: false
-            }
-        }) 
-        {
-            document {
-                numericalField
-                textField
-                booleanField
-              }
-        }
-      }
-    `)        
+    console.log("Successfully created the thing? ", update.errors? "No" + update.errors:"Yes")       
 }
 
 // FILTERING RECORDS
@@ -70,37 +58,26 @@ if (create) {
 const filter = true;
 if (filter) {
     const resultFiltered = await compose.executeQuery(`
-      query numericalFieldFiltered {
-        genericModelIndex(first: 1, filters: { where: {numericalField: {equalTo: 2} } }) {
-              edges {
+    query ProfileIndex {
+        basicProfileIndex(first: 10) {
+          edges {
             node {
-                id
-                numericalField
-                textField
-                booleanField
+              id
+              username
+              description
+              gender
+              emoji
             }
           }
         }
       }
     `)
-    console.log("just filtering", resultFiltered.data.genericModelIndex.edges);
-
-    const result = await compose.executeQuery(`
-    query {
-        genericModelIndex(first:1) {
-              edges {
-            node {
-                numericalField
-                textField
-                booleanField
-            }
-          }
-        }
-      }
-    `)
-    const { data } = result;
-    console.log("Just looking", data.genericModelIndex.edges);
-
+    if(resultFiltered.errors) {
+        console.log("FALLO ",resultFiltered.errors)
+    } else {
+        console.log("just filtering", resultFiltered.data.basicProfileIndex.edges);
+    }
+    
 }
 
 // UPDATING RECORDS

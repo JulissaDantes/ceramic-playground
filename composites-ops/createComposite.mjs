@@ -23,9 +23,9 @@ const ceramic = new CeramicClient('http://localhost:7007');
 ceramic.did = did;
 
 // Replace by the path to the source schema file
-const composite = await createComposite(ceramic, './models/my-test-schema.graphql');
+const composite = await createComposite(ceramic, './models/my-set-schema.graphql');
 console.log("CREATED COMPOSITE", composite)
 // Replace by the path to the encoded composite file
-const res = await writeEncodedComposite(composite, './composites-ops/my-composite.json');
+const res = await writeEncodedComposite(composite, './composites-ops/my-set-composite.json');
 
 console.log("Created the composite", res);
