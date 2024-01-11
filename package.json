@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "deploy-from-model":"node modelWorkflow.mjs"
   },
   "repository": {
     "type": "git",

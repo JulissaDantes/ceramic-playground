@@ -1,0 +1,27 @@
+type IdealiteResus @loadModel(id: "kjzl6hvfrbw6c8iyosnyn1gh7srmyhzxtwxnaxmiu1v0hhw8w6wgytoofjpg301") {
+    id: ID!
+}
+
+type Card63
+    @createModel(accountRelation: LIST, description: "Blocks of text for Idealite") 
+    @createIndex(fields: [{ path: ["deleted"]} ])
+    @createIndex(fields: [{ path: ["url"]} ])
+    @createIndex(fields: [{ path: ["updatedAt"]} ]) {
+    account: DID! @documentAccount
+    altText: String @string(minLength: 1, maxLength: 3000)
+    annotation: String @string(minLength: 1, maxLength: 10000)
+    cid: String @string(minLength: 1, maxLength: 3000)
+    createdAt: DateTime
+    deleted: Boolean
+    mimeType: String @string(minLength: 1, maxLength: 140)
+    pageYOffset: Float
+    pinSize: Int
+    pinSize51: Int
+    quote: String @string(minLength: 1, maxLength: 10000)
+    resourceId: StreamID @documentReference(model: "IdealiteResus")
+    resource: IdealiteResus @relationDocument(property: "resourceId")
+    scrollHeight: Float
+    updatedAt: DateTime
+    url: String @string(minLength: 1, maxLength: 140)
+    videoTime: String @string(minLength: 1, maxLength: 300)
+}
