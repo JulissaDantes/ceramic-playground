@@ -25,7 +25,7 @@ const ceramic = new CeramicClient('http://localhost:7007');
 ceramic.did = did;
 
 const composite = await createComposite(ceramic, './models/' + modelFile);
-console.log("Created composite for model:", modelFile);
+console.log("Created composite for model");
 await writeEncodedComposite(composite, './' + compositeFile);
 console.log("Created encoded composite")
 await writeEncodedCompositeRuntime(

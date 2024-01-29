@@ -2,7 +2,7 @@ type IdealiteResus @loadModel(id: "kjzl6hvfrbw6c8iyosnyn1gh7srmyhzxtwxnaxmiu1v0h
     id: ID!
 }
 
-type Card63
+type Card81
     @createModel(accountRelation: LIST, description: "Blocks of text for Idealite") 
     @createIndex(fields: [{ path: ["deleted"]} ])
     @createIndex(fields: [{ path: ["url"]} ])
@@ -10,13 +10,13 @@ type Card63
     account: DID! @documentAccount
     altText: String @string(minLength: 1, maxLength: 3000)
     annotation: String @string(minLength: 1, maxLength: 10000)
-    cid: String @string(minLength: 1, maxLength: 3000)
+    cid12: String @string(minLength: 1, maxLength: 3000)
     createdAt: DateTime
     deleted: Boolean
     mimeType: String @string(minLength: 1, maxLength: 140)
     pageYOffset: Float
     pinSize: Int
-    pinSize51: Int
+    pinSize64: Int
     quote: String @string(minLength: 1, maxLength: 10000)
     resourceId: StreamID @documentReference(model: "IdealiteResus")
     resource: IdealiteResus @relationDocument(property: "resourceId")

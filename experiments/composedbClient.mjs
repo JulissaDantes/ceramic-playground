@@ -7,7 +7,7 @@ import { getResolver } from 'key-did-resolver'
 
 // Import your compiled composite
 
-import { definition } from   './__generated__/definition.js'
+import { definition } from   '../__generated__/definition.js'
 
 // Create an instance of ComposeClient
 // Pass the URL of your Ceramic server
@@ -67,7 +67,7 @@ if (create) {
 
 // FILTERING RECORDS
 
-const filter = true;
+const filter = false;
 if (filter) {
     const resultFiltered = await compose.executeQuery(`
       query numericalFieldFiltered {
@@ -104,7 +104,7 @@ if (filter) {
 }
 
 // UPDATING RECORDS
-const doUpdate = false
+const doUpdate = true
 
 if (doUpdate) {
     const update = await compose.executeQuery(`
@@ -113,8 +113,8 @@ if (doUpdate) {
           input: { 
             id: "kjzl6kcym7w8y7mjgp7tl2x69f1nonwhgymzju8aq8powcz5uvgh2xvt9n7unzn",
             content: {
-              numericalField: 42,
-              textField: "Sample Text truly uluy",
+              numericalField: 43,
+              textField: "Sample Text truly r2",
               booleanField: true  # Make sure this line doesn't have an extra closing parenthesis
             }
           }
