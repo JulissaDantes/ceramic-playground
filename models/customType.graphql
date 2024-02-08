@@ -1,0 +1,6 @@
+union CustomType = Int | String
+
+type UserOfType
+    @createModel(accountRelation: LIST, description: "allows multiple types in single field") {
+        typesField CustomType
+    }
