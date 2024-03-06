@@ -1,0 +1,2 @@
+// This is an auto-generated file, do not edit manually
+export const definition = {"models":{"UpdateModel":{"id":"kjzl6hvfrbw6c5w5xev42v4hgl14w7l30g57td2x33r6nnzpnchq0dscy2h789w","accountRelation":{"type":"single"}}},"objects":{"UpdateModel":{"Cname":{"type":"string","required":true}}},"enums":{},"accountData":{"updateModel":{"type":"node","name":"UpdateModel"}}}

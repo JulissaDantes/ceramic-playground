@@ -7,7 +7,7 @@ import { getResolver } from 'key-did-resolver'
 
 // Import your compiled composite
 
-import { definition } from   '../__generated__/definition.js'
+import { definition } from   '../__generated__/definition-updateTest.js'
 
 // Create an instance of ComposeClient
 // Pass the URL of your Ceramic server
@@ -23,28 +23,26 @@ await did.authenticate()
 compose.setDID(did)
 
 // CREATING RECORDS
-const create = false; // Update if you want to create something new
+const create = true; // Update if you want to create something new
 
 if (create) {
-    await compose.executeQuery(`
+    const res = await compose.executeQuery(`
     mutation {
-        createGenericModel(input: {
+        createUpdateModel(input: {
             content: {
-                numericalField: 46,
-                textField: "Sample Text",
-                booleanField: true
+                name: "test m0ar"
             }
         }) 
         {
             document {
-                numericalField
-                textField
-                booleanField
+                name
               }
         }
       }
     `)
     
+    console.log("Tests was ", res.data)
+    /*
     await compose.executeQuery(`
     mutation {
         createGenericModel(input: {
@@ -62,13 +60,14 @@ if (create) {
               }
         }
       }
-    `)        
+    `)  */      
 }
 
 // FILTERING RECORDS
 
-const filter = false;
+const filter = true;
 if (filter) {
+  /*
     const resultFiltered = await compose.executeQuery(`
       query numericalFieldFiltered {
         genericModelIndex(first: 1, filters: { where: {numericalField: {equalTo: 2} } }) {
@@ -100,11 +99,25 @@ if (filter) {
     `)
     const { data } = result;
     console.log("Just looking", data.genericModelIndex.edges);
+*/
+    const expecting = await compose.executeQuery(`
+    query {
+        updateModelIndex(first:1) {
+              edges {
+            node {
+                name
+            }
+          }
+        }
+      }
+    `)
+
+    console.log("Just looking", expecting);
 
 }
 
 // UPDATING RECORDS
-const doUpdate = true
+const doUpdate = false
 
 if (doUpdate) {
     const update = await compose.executeQuery(`

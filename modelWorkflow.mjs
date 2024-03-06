@@ -5,9 +5,9 @@ import { getResolver } from 'key-did-resolver';
 // Import the devtool node package
 import { createComposite, writeEncodedComposite, writeEncodedCompositeRuntime } from '@composedb/devtools-node';
 
-const modelFile = "2.graphql";
-const compositeFile = "my-composite-2.json";
-const definitionFile = "__generated__/definition-2.js";
+const modelFile = "updateTest.graphql";
+const compositeFile = "my-composite-updateTest.json";
+const definitionFile = "__generated__/definition-updateTest.js";
 const seed = new Uint8Array([//Random numbers
     192,  16, 89, 183,  66, 111,  35,  98,
     211, 155, 35, 149, 177, 242, 119,  55,
