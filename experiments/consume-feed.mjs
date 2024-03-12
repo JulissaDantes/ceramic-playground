@@ -6,7 +6,7 @@ const source = new EventSource('http://localhost:7007/api/v0/feed/aggregation/do
 const Codec = JsonAsString.pipe(AggregationDocument)
 
 source.addEventListener('message', (event) => {
-	console.log("escuche", event.data)
+	console.log("This is the new event", event.data)
 	const parsedData = decode(Codec, event.data)
 	const streamID = parsedData.commitId.baseID
 	console.log('parsed', streamID,":\n", parsedData)
