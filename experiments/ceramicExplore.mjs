@@ -15,11 +15,18 @@ const did = new DID({ provider, resolver: getResolver() });
 
 await did.authenticate();
 
-const ceramic = new CeramicClient('https://ceramic-dev.3boxlabs.com');//https://ceramic-dev.3boxlabs.com http://localhost:7007
+const ceramic = new CeramicClient('http://localhost:7007');//https://ceramic-dev.3boxlabs.com http://localhost:7007
 
 ceramic.did = did;
 
-/*const varlu = (await ceramic.admin.getIndexedModelData())[0].streamID.toString()
+const streamIds = await ceramic.admin.pin.ls()
 
-console.log("Esto devolvio", varlu === "kjzl6hvfrbw6c72iuc4yvb95lpvviqwjdheejn5tmx714p0owsbe52zmcmonjq7");*/
-console.log("sdfsd");
+console.log("This is pinned ", streamIds)
+
+// unpin this http://localhost:7007
+const streamId = 'k2t6wyfsu4pfxus4m4c932u9jbma18ajizbhdb4nrn6011pboh0x7igbc93ht6'
+await ceramic.admin.pin.rm(streamId)// this trowed the wrong message here TODO PR
+
+console.log("Deleted the pin, now let's see if its still there")
+
+console.log("This is pinned ", await ceramic.admin.pin.ls())
