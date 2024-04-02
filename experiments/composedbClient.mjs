@@ -7,7 +7,7 @@ import { getResolver } from 'key-did-resolver'
 
 // Import your compiled composite
 
-import { definition } from   '../__generated__/definition-updateTest.js'
+import { definition } from   '../__generated__/definition-markq.js'
 
 // Create an instance of ComposeClient
 // Pass the URL of your Ceramic server
@@ -26,7 +26,45 @@ compose.setDID(did)
 const create = true; // Update if you want to create something new
 
 if (create) {
-    const res = await compose.executeQuery(`
+  const res = await compose.executeQuery(`mutation CreateSecurityAudit {
+    setSecurityAudit(input: {
+      content: {
+        subjectId: "snap://CLwZocaUEbDErtQAsybaudZDJq65a8AwlEFgkGUpmAQ="
+        issuanceDate: "2021-10-01T00:00:00Z"
+        securityStatus: true
+        securityFindings: [
+          {
+            criticality: 0.5
+            type: "Data leak"
+            description: "API can communicate data to a centralized server"
+            lang: "en"
+          }
+        ]
+        proof: "eyJwYXlsb2FkIjoiZXlKQmMzQmxZM1JoSWpvaUlpd2lRMmhoY20xV1pYSnpaU0k2SWlJc0lrUmxVR2x1UkdGNUlqb2lhMnA2YkRaclkzbHROM2M0ZVRkMlpUaDVkSE5uY1dZemVuaHNhakJzT1hWaFlUUmpOR0V4TldObE9IQnJlWEJ0WlRSdVkzaHZkM0YzY1drNWJHd3lJaXdpUkdWVFkybEVZWGtpT2lKcmFucHNObXRqZVcwM2R6aDVOalpqTW5FNGJHYzVPSGgyTjJKM2VYcHROMmhtYlRKMmNXSnVkbVJ2TWpkdk9HZHdkV3RyTVRKaU1tWjZjRzlyZEdvaUxDSkdiSFZsYm1ObFFtOXZkR2dpT2lJaUxDSlBjR1Z1UkdGMFlVUmhlU0k2SWlJc0lsQnliMjltVDJaRVlYUmhJam9pYTJwNmJEWnJZM2x0TjNjNGVUaHVialpsZUc1MGJqY3hPVEJtWTJ4ck4zRXlOR1Y1YVROdmMybHRjM1Z2ZUdSelp6VXdNRGcyTURkc00yaDJhVFI0SWl3aVZHRnNaVzUwUkdGdlNHRmphMlZ5U0c5MWMyVWlPaUlpTENKbGRtVnVkQ0k2SWxSb2NtVmxRbUZrWjJWeklpd2ljbVZqYVhCcFpXNTBJam9pTUhneU5HVmlNRFE1TXpFMk5qWmlPV0UxTXpJNVpEUTFZakZqWldKa1lqQTNOV1prTXpobE9XSTRJaXdpZEdsdFpYTjBZVzF3SWpvaU1qQXlOQzB3TXkwd05sUXhPVG95TlRvd09TNDNNVGhhSW4wIiwic2lnbmF0dXJlcyI6W3sicHJvdGVjdGVkIjoiZXlKaGJHY2lPaUpGWkVSVFFTSXNJbXRwWkNJNkltUnBaRHByWlhrNmVqWk5hMmhGVWpVeE9ERnRkRGxRUWtOeWJsWjJURGxCWTJSWGVYcFRlbW8wVUV4blIxWkxVMFpxU2podllrMU9JM28yVFd0b1JWSTFNVGd4YlhRNVVFSkRjbTVXZGt3NVFXTmtWM2w2VTNwcU5GQk1aMGRXUzFOR2FrbzRiMkpOVGlKOSIsInNpZ25hdHVyZSI6IlB2WGdWUFdqVktiRThjdnVFRFBPaG5hb1lBamh3am5JRVZGZWZyS2JxYndHVU9aSktFOEZBczJZeWg4RUxXVC1mZkpUc1lvTzBxNi1oaDgtMW9obERnIn1dfQ=="
+      }
+    })
+    {
+      document {
+        id
+        issuer{
+          id
+        }
+        subjectId
+        issuanceDate
+        securityStatus
+        securityFindings {
+          criticality
+          type
+          description
+          lang
+        }
+        proof
+      }
+    }
+  }`)
+
+  console.log("Tests was ", res.errors)
+    /*const res = await compose.executeQuery(`
     mutation {
         createUpdateModel(input: {
             content: {
@@ -42,7 +80,7 @@ if (create) {
     `)
     
     console.log("Tests was ", res.data)
-    /*
+    
     await compose.executeQuery(`
     mutation {
         createGenericModel(input: {
@@ -65,7 +103,7 @@ if (create) {
 
 // FILTERING RECORDS
 
-const filter = true;
+const filter = false;
 if (filter) {
   /*
     const resultFiltered = await compose.executeQuery(`

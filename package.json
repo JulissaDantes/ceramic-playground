@@ -23,11 +23,11 @@
   },
   "homepage": "https://github.com/JulissaDantes/ceramic-playground#readme",
   "dependencies": {
-    "@ceramicnetwork/cli": "^2.43.0",
+    "@ceramicnetwork/cli": "^5.2.0",
     "@ceramicnetwork/codecs": "file:../js-ceramic/packages/codecs",
-    "@ceramicnetwork/http-client": "^2.35.0",
+    "@ceramicnetwork/http-client": "^5.2.0",
     "@ceramicnetwork/stream-tile": "^2.34.0",
-    "@composedb/devtools-node": "^0.5.2",
+    "@composedb/devtools-node":  "^0.7.1",
     "codeco": "^1.2.0",
     "cross-eventsource": "^1.0.0"
   }

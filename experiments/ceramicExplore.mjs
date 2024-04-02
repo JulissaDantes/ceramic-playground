@@ -21,12 +21,11 @@ ceramic.did = did;
 
 const streamIds = await ceramic.admin.pin.ls()
 
-console.log("This is pinned ", streamIds)
-
-// unpin this http://localhost:7007
-const streamId = 'k2t6wyfsu4pfxus4m4c932u9jbma18ajizbhdb4nrn6011pboh0x7igbc93ht6'
-await ceramic.admin.pin.rm(streamId)// this trowed the wrong message here TODO PR
-
-console.log("Deleted the pin, now let's see if its still there")
-
-console.log("This is pinned ", await ceramic.admin.pin.ls())
+for await (const element of streamIds) {
+  
+  try {
+    await ceramic.admin.pin.rm(element)
+  } catch {
+    console.log("This stays pinned ", element)
+  }
+}

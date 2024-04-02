@@ -1,2 +1,2 @@
 // This is an auto-generated file, do not edit manually
-export const definition = {"models":{"UpdateModel":{"id":"kjzl6hvfrbw6c5w5xev42v4hgl14w7l30g57td2x33r6nnzpnchq0dscy2h789w","accountRelation":{"type":"single"}}},"objects":{"UpdateModel":{"Cname":{"type":"string","required":true}}},"enums":{},"accountData":{"updateModel":{"type":"node","name":"UpdateModel"}}}
+export const definition = {"models":{"UpdateModel4":{"id":"kjzl6hvfrbw6c7yvn9mmxfscy6ymho1eg7mm512akctsek9oo943kmkcpmd0i1o","accountRelation":{"type":"single"}}},"objects":{"UpdateModel4":{"Dname":{"type":"string","required":true}}},"enums":{},"accountData":{"updateModel4":{"type":"node","name":"UpdateModel4"}}}
