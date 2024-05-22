@@ -23,7 +23,7 @@ await did.authenticate();
 const ceramic = new CeramicClient('http://0.0.0.0:7007');
 // An authenticated DID with admin access must be set on the Ceramic instance
 ceramic.did = did;
-console.log("did was authenticated", ceramic.did, './models/' + modelFile);
+
 const composite = await createComposite(ceramic, './models/' + modelFile);
 console.log("Created composite for model");
 await writeEncodedComposite(composite, './' + compositeFile);

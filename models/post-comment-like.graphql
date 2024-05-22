@@ -1,8 +1,8 @@
 
-type Post @createModel(accountRelation: LIST, description: "A simple Post") {
+type Post2 @createModel(accountRelation: LIST, description: "A simple Post") {
   body: String! @string(minLength: 1, maxLength: 100)
   edited: DateTime
-  created: DateTime!
+  created2: DateTime!
 }
 
 
@@ -10,16 +10,17 @@ type Post @createModel(accountRelation: LIST, description: "A simple Post") {
 # Set relationship to original post
 # Enable querying comment to get original post
 
-type Comment @createModel(accountRelation: LIST, description: "A comment on a Post") {
-  postID: StreamID! @documentReference(model: "Post")
-  post: Post! @relationDocument(property: "postID")
-  text: String! @string(maxLength: 500)
+type Comment2 @createModel(accountRelation: LIST, description: "A comment on a Post") {
+  postID: StreamID! @documentReference(model: "Post2")
+  post: Post2! @relationDocument(property: "postID")
+  text2: String! @string(maxLength: 500)
 }
 
 # New like model
 # Set relationship to original post
 # Enable querying comment to get original post
-type Like @createModel(description: "A like on a post", accountRelation: SET, accountRelationFields: ["postID"]) {
-  postID: StreamID! @documentReference(model: "Post")
-  post: Post! @relationDocument(property: "postID")
+type Like2 @createModel(description: "A like on a post", accountRelation: SET, accountRelationFields: ["postID"]) {
+  postID: StreamID! @documentReference(model: "Post2")
+  post: Post2! @relationDocument(property: "postID")
+  edited: DateTime
 }

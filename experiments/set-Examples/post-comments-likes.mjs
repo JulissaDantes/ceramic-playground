@@ -1,37 +1,118 @@
-import { CeramicClient } from '@ceramicnetwork/http-client';
-import { DID } from 'dids';
-import { Ed25519Provider } from 'key-did-provider-ed25519';
-import { getResolver } from 'key-did-resolver';
-import { createComposite, writeEncodedComposite, writeEncodedCompositeRuntime } from '@composedb/devtools-node';
+// Import ComposeDB client
 
-const name = 'post-comment-like'
-const modelFile = name + ".graphql";
-const compositeFile = "my-composite-" + name + ".json";
-const definitionFile = "__generated__/definition-" + name + ".js";
-const seed = new Uint8Array([//Random numbers
-    192,  16, 89, 183,  66, 111,  35,  98,
-    211, 155, 35, 149, 177, 242, 119,  55,
-    202,  79, 94, 168, 106,  74,  17,  10,
-    116, 105, 77, 116, 161, 176,  81, 189
-  ]);// TO BE REPLACE with actual admin DID seed
+import { ComposeClient }from '@composedb/client'
+import { DID } from 'dids'
+import { Ed25519Provider } from 'key-did-provider-ed25519'
+import { getResolver } from 'key-did-resolver'
 
-const provider = new Ed25519Provider(seed);
-const did = new DID({ provider, resolver: getResolver() });
+// Import your compiled composite
 
-await did.authenticate();
+import { definition } from   '../../__generated__/definition-post-comment-like.js'
 
-const ceramic = new CeramicClient('http://0.0.0.0:7007');
-// An authenticated DID with admin access must be set on the Ceramic instance
-ceramic.did = did;
+// Create an instance of ComposeClient
+// Pass the URL of your Ceramic server
+// Pass reference to your compiled composite
 
-const composite = await createComposite(ceramic, './models/' + modelFile);
-console.log("Created composite for model");
-await writeEncodedComposite(composite, './' + compositeFile);
-console.log("Created encoded composite")
-await writeEncodedCompositeRuntime(
-    ceramic,
-    compositeFile,
-    definitionFile
-)
-console.log("Deployed composite")
-console.log("SUCCESS");
+const compose = new ComposeClient({ ceramic: 'http://localhost:7007', definition })
+const seed = new Uint8Array([157, 243, 44, 109, 192, 15, 72, 51, 96, 235, 41, 250, 4, 164, 114, 23, 44, 109, 192, 15, 72, 51, 96, 235, 41, 250, 4, 164, 15, 72, 51, 96]);//Random bytes
+const provider = new Ed25519Provider(seed)
+const did = new DID({ provider, resolver: getResolver() })
+
+// Authenticate the DID with the provider
+await did.authenticate()
+// Allow did to perform mutations
+compose.setDID(did)
+console.log("Using did:", did.id)
+// CREATING RECORDS
+const create = true; // Update if you want to create something new
+
+if (create) {
+  console.log("We'll create a post")
+  const creation = await compose.executeQuery(`
+  mutation {
+    createPost(input: {
+    content: {
+      body: "Getting started with ComposeDB"
+      created: "2016-01-01T13:10:20Z" 
+    }
+    }) 
+    {
+      document{
+            id
+            body
+            created
+      }
+    }}
+    `)
+  
+  console.log("Successfully created the thing? ", creation.errors? "No " + creation.errors:"Yes")       
+}
+
+// FILTERING RECORDS
+
+const filter = false;
+if (filter) {
+    const resultFiltered = await compose.executeQuery(`
+    query ProfileIndex {
+        basicProfileIndex(first: 10) {
+          edges {
+            node {
+              id
+              username
+              description
+              gender
+              emoji
+            }
+          }
+        }
+      }
+    `)
+    if(resultFiltered.errors) {
+        console.log("FALLO ",resultFiltered.errors)
+    } else {
+        console.log("just filtering", resultFiltered.data.basicProfileIndex.edges);
+    }
+    
+}
+
+// UPDATING RECORDS
+const doUpdate = false
+
+if (doUpdate) {
+    const update = await compose.executeQuery(`
+    mutation UpdateGenericModel {
+        updateGenericModel(
+          input: { 
+            id: "kjzl6kcym7w8y7mjgp7tl2x69f1nonwhgymzju8aq8powcz5uvgh2xvt9n7unzn",
+            content: {
+              numericalField: 42,
+              textField: "Sample Text truly uluy",
+              booleanField: true  # Make sure this line doesn't have an extra closing parenthesis
+            }
+          }
+        ) {
+          document {
+            numericalField
+            textField
+            booleanField
+          }
+        }
+      }
+      
+    `)
+    console.log("What was returned:", update.data);
+
+    const resultFiltered2 = await compose.executeQuery(`
+    query {
+        node (id: "kjzl6kcym7w8y7pobe7vnuidr4eauw6fdnhd98j9t9wumdhrqzi0748bo7hp4j5") {
+          ... on GenericModel {
+            id
+            numericalField
+            textField
+            booleanField
+          }
+        }
+      }
+    `)
+    console.log("just filtering updated record", resultFiltered2);
+}
